@@ -40,7 +40,7 @@
                                     Edit Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="auth-login.html">
+                                <a class="dropdown-item" href="{{ route('logout') }}">
                                     <i class="feather icon-power"></i> 
                                     Logout
                                 </a>
