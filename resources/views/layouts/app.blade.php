@@ -113,17 +113,19 @@
     <script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
 
     <script>
-        let err = '{{ $err }}';
-        toastr.error(
-            err, 
-            'Error!', { 
-                showMethod: "slideDown", 
-                hideMethod: "slideUp", 
-                timeOut: 5000 ,
-                positionClass: 'toast-top-center', 
-                containerId: 'toast-top-center' 
-            }
-        );
+        let err = '{{ $err ?? '' }}';
+        if( err != '' ){
+            toastr.error(
+                err, 
+                'Error!', { 
+                    showMethod: "slideDown", 
+                    hideMethod: "slideUp", 
+                    timeOut: 5000 ,
+                    positionClass: 'toast-top-center', 
+                    containerId: 'toast-top-center' 
+                }
+            );
+        }
     </script>
 
     @yield('script')
