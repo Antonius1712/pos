@@ -12,19 +12,19 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-2 col-md-2 col-lg-2">
+                <div class="col-12 col-md-2 col-lg-2">
                     <div class="form-group">
                         <label>Kode Barang</label>
                         <input type="text" name="kode_barang" id="kode_barang" class="form-control">
                     </div>
                 </div>
-                <div class="col-2 col-md-2 col-lg-2">
+                <div class="col-12 col-md-2 col-lg-2">
                     <div class="form-group">
                         <label>Nama Barang</label>
                         <input type="text" name="nama_barang" id="nama_barang" class="form-control">
                     </div>
                 </div>
-                <div class="col-2 col-md-2 col-lg-2">
+                <div class="col-12 col-md-2 col-lg-2">
                     <div class="form-group mt-1">
                         <button class="btn btn-primary">Cari</button>
                     </div>

@@ -24,7 +24,7 @@ class AdminBarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.barang.create');
     }
 
     /**
