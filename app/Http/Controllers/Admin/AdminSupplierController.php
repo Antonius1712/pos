@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminSupplierRequest;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class AdminSupplierController extends Controller
@@ -14,7 +16,8 @@ class AdminSupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::all();
+        return view('admin.supplier.index', compact('suppliers'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AdminSupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.supplier.create');
     }
 
     /**
@@ -33,9 +36,10 @@ class AdminSupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminSupplierRequest $request)
     {
-        //
+        Supplier::create($request->validated());
+        return redirect()->route('admin.supplier.index');
     }
 
     /**
@@ -55,9 +59,9 @@ class AdminSupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Supplier $supplier)
     {
-        //
+        return view('admin.supplier.edit', compact('supplier'));
     }
 
     /**
@@ -67,9 +71,10 @@ class AdminSupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminSupplierRequest $request, Supplier $supplier)
     {
-        //
+        $supplier->update($request->validated());
+        return redirect()->route('admin.supplier.index');
     }
 
     /**
@@ -78,8 +83,9 @@ class AdminSupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->delete();
+        return redirect()->route('admin.supplier.index');
     }
 }

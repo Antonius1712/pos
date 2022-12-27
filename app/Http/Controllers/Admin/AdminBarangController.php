@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminBarangRequest;
+use App\Models\Barang;
+use App\Models\Kategori;
+use App\Models\Merk;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class AdminBarangController extends Controller
@@ -12,9 +17,22 @@ class AdminBarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $kategori;
+    protected $merk;
+    protected $supplier;
+
+    public function __construct()
+    {
+        $this->kategori = Kategori::all();
+        $this->merk = Merk::all();
+        $this->supplier = Supplier::all();
+    }
+
     public function index()
     {
-        return view('admin.barang.index');
+        $barangs = Barang::all();
+        return view('admin.barang.index', compact('barangs'));
     }
 
     /**
@@ -24,7 +42,11 @@ class AdminBarangController extends Controller
      */
     public function create()
     {
-        return view('admin.barang.create');
+        $kategori = $this->kategori;
+        $merk = $this->merk;
+        $supplier = $this->supplier;
+
+        return view('admin.barang.create', compact('kategori', 'merk', 'supplier'));
     }
 
     /**
@@ -33,9 +55,18 @@ class AdminBarangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminBarangRequest $request)
     {
-        //
+        try {
+            $barang = Barang::create($request->validated());
+        } catch(\Exception $e) {
+            // dd($e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['err' => $e->getMessage()]);
+        }
+
+        $kode_barang = $this->GenerateKodeBarang($barang);
+        
+        return redirect()->route('admin.barang.index');
     }
 
     /**
@@ -55,9 +86,9 @@ class AdminBarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Barang $barang)
     {
-        //
+        return view('admin.barang.edit', compact('barang'));
     }
 
     /**
@@ -67,9 +98,10 @@ class AdminBarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminBarangRequest $request, Barang $barang)
     {
-        //
+        $barang->update($request->validated());
+        return redirect()->route('admin.barang.index');
     }
 
     /**
@@ -78,8 +110,13 @@ class AdminBarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Barang $barang)
     {
-        //
+        $barang->delete();
+        return redirect()->route('admin.barang.index');
+    }
+
+    public function GenerateKodeBarang($data){
+        dd($data);
     }
 }

@@ -18,7 +18,7 @@ class CreateBarang extends Migration
             $table->integer('kategori_id');
             $table->integer('merk_id');
             $table->integer('supplier_id');
-            $table->integer('kode_barang');
+            $table->integer('kode_barang')->nullable();
             $table->integer('nama_barang');
             $table->integer('harga_beli');
             $table->integer('harga_jual');

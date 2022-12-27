@@ -46,6 +46,16 @@
                         <th>Stok</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @forelse ($barangs as $barang)
+                        <td> {{ $barang->kode_barang }} </td>
+                        <td> {{ $barang->nama_barang }} </td>
+                        <td> {{ $barang->harga_jual }} </td>
+                        <td> {{ $barang->stok }} </td>
+                    @empty
+                        
+                    @endforelse
+                </tbody>
             </table>
         </div>
     </div>

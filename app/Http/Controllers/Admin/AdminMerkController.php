@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminMerkRequest;
+use App\Models\Merk;
 use Illuminate\Http\Request;
 
 class AdminMerkController extends Controller
@@ -14,7 +16,8 @@ class AdminMerkController extends Controller
      */
     public function index()
     {
-        //
+        $merks = Merk::all();
+        return view('admin.merk.index', compact('merks'));
     }
 
     /**
@@ -24,7 +27,7 @@ class AdminMerkController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.merk.create');
     }
 
     /**
@@ -33,9 +36,10 @@ class AdminMerkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminMerkRequest $request)
     {
-        //
+        Merk::create($request->validated());
+        return redirect()->route('admin.merk.index');
     }
 
     /**
@@ -55,9 +59,9 @@ class AdminMerkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Merk $merk)
     {
-        //
+        return view('admin.merk.edit', compact('merk'));
     }
 
     /**
@@ -67,9 +71,10 @@ class AdminMerkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminMerkRequest $request, Merk $merk)
     {
-        //
+        $merk->update($request->validated());
+        return redirect()->route('admin.merk.index');
     }
 
     /**
@@ -78,8 +83,9 @@ class AdminMerkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Merk $merk)
     {
-        //
+        $merk->delete();
+        return redirect()->route('admin.merk.index');
     }
 }

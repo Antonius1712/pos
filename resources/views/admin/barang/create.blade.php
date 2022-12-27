@@ -18,50 +18,100 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="form-group">
-                <label class="text-uppercase">kategori</label>
-                <select name="kategori_id" id="kategori_id" class="form-control">
-                    <option value="">-- Pilih --</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">merk</label>
-                <select name="merk_id" id="merk_id" class="form-control">
-                    <option value="">-- Pilih --</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">supplier</label>
-                <select name="supplier_id" id="supplier_id" class="form-control">
-                    <option value="">-- Pilih --</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">kode barang</label>
-                <input name="kode_barang" type="text" class="form-control" id="kode_barang" readonly>
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">harga beli</label>
-                <input name="harga_beli" type="number" class="form-control" id="harga_beli">
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">harga jual</label>
-                <input name="harga_jual" type="number" class="form-control" id="harga_jual">
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">stok</label>
-                <input name="stok" type="number" class="form-control" id="stok">
-            </div>
-            <div class="form-group">
-                <label class="text-uppercase">satuan</label>
-                <input name="satuan" type="text" class="form-control" id="satuan">
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
+            <form action="{{ route('admin.barang.store') }}" method="post">
+                @csrf
+                <div class="form-group">
+                    <label class="text-uppercase">kategori</label>
+                    <select name="kategori_id" id="kategori_id" class="form-control @error('kategori_id') is-invalid @enderror">
+                        <option value="">-- Pilih --</option>
+                        @forelse ($kategori as $key => $val)
+                            <option {{ $val->id == ($kategori_id ?? old('kategori_id')) ? 'selected' : '' }} data-kode="{{ $val->kode_kategori }}" value="{{ $val->id }}"> {{ $val->kode_kategori }} - {{ $val->nama_kategori }} </option>
+                        @empty
+                            
+                        @endforelse
+                    </select>
+                    @error('kategori_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="text-uppercase">merk</label>
+                    <select name="merk_id" id="merk_id" class="form-control @error('merk_id') is-invalid @enderror">
+                        <option value="">-- Pilih --</option>
+                        @forelse ($merk as $key => $val)
+                            <option {{ $val->id == ($merk_id ?? old('merk_id')) ? 'selected' : '' }} data-kode="{{ $val->kode_merk }}" value="{{ $val->id }}"> {{ $val->kode_merk }} - {{ $val->nama_merk }} </option>
+                        @empty
+                            
+                        @endforelse
+                    </select>
+                    @error('merk_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="text-uppercase">supplier</label>
+                    <select name="supplier_id" id="supplier_id" class="form-control @error('supplier_id') is-invalid @enderror">
+                        <option value="">-- Pilih --</option>
+                        @forelse ($supplier as $key => $val)
+                            <option {{ $val->id == ($supplier_id ?? old('supplier_id')) ? 'selected' : '' }} value="{{ $val->id }}"> {{ $val->nama_supplier }} </option>
+                        @empty
+                            
+                        @endforelse
+                    </select>
+                    @error('supplier_id')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                {{-- <div class="form-group">
+                    <label class="text-uppercase">kode barang</label>
+                    <input name="kode_barang" type="text" class="form-control" id="kode_barang" readonly>
+                </div> --}}
+                <div class="form-group">
+                    <label class="text-uppercase">harga beli</label>
+                    <input value="{{ $harga_beli ?? old('harga_beli') }}" name="harga_beli" type="number" class="form-control @error('harga_beli') is-invalid @enderror" id="harga_beli">
+                    @error('harga_beli')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="text-uppercase">harga jual</label>
+                    <input value="{{ $harga_jual ?? old('harga_jual') }}" name="harga_jual" type="number" class="form-control @error('harga_jual') is-invalid @enderror" id="harga_jual">
+                    @error('harga_jual')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="text-uppercase">stok</label>
+                    <input value="{{ $stok ?? old('stok') }}" name="stok" type="number" class="form-control @error('stok') is-invalid @enderror" id="stok">
+                    @error('stok')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label class="text-uppercase">satuan</label>
+                    <input value="{{ $satuan ?? old('satuan') }}" name="satuan" type="text" class="form-control @error('satuan') is-invalid @enderror" id="satuan">
+                    @error('satuan')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
+
+    @php( $err = '' )
+    @error('err')
+        @php(
+            $err = $message
+        )
+    @enderror
 @endsection
 @section('script')
-    
+<script>
+    $(document).ready(function(){
+        $('select').select2();
+    });
+</script>
 @endsection

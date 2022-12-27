@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\AdminKategoriRequest;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class AdminKategoriController extends Controller
@@ -12,9 +14,11 @@ class AdminKategoriController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $kategoris = Kategori::all();
+        return view('admin.kategori.index', compact('kategoris'));
     }
 
     /**
@@ -24,7 +28,7 @@ class AdminKategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kategori.create');
     }
 
     /**
@@ -33,9 +37,15 @@ class AdminKategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminKategoriRequest $request)
     {
-        //
+        try {
+            Kategori::create($request->validated());
+        } catch(\Exception $e) {
+            return redirect()->back()->withErrors($e);
+        }
+        
+        return redirect()->route('admin.kategori.index');
     }
 
     /**
@@ -55,9 +65,9 @@ class AdminKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kategori $kategori)
     {
-        //
+        return view('admin.kategori.edit', compact('kategori'));
     }
 
     /**
@@ -67,9 +77,10 @@ class AdminKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdminKategoriRequest $request, Kategori $kategori)
     {
-        //
+        $kategori->update($request->validated());
+        return redirect()->route('admin.kategori.index');
     }
 
     /**
@@ -78,8 +89,9 @@ class AdminKategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kategori $kategori)
     {
-        //
+        $kategori->delete();
+        return redirect()->route('admin.kategori.index');
     }
 }

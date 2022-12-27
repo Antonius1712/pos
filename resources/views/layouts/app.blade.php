@@ -38,11 +38,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/dashboard-analytics.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/card-analytics.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/tour/tour.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/extensions/toastr.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/extensions/toastr.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     <!-- END: Custom CSS-->
+
+    <link rel="stylesheet" href="{{ asset('app-assets/vendors/css/select2.min.css') }}">
 
     @yield('css')
 
@@ -83,7 +87,6 @@
     </footer>
     <!-- END: Footer-->
 
-
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
@@ -104,6 +107,25 @@
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets/js/scripts/pages/dashboard-analytics.js') }}"></script>
     <!-- END: Page JS-->
+
+    <script type="text/javascript" src="{{ asset('app-assets/vendors/js/select2.min.js') }}"></script>
+
+    <script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
+
+    <script>
+        let err = '{{ $err }}';
+        toastr.error(
+            err, 
+            'Error!', { 
+                showMethod: "slideDown", 
+                hideMethod: "slideUp", 
+                timeOut: 5000 ,
+                positionClass: 'toast-top-center', 
+                containerId: 'toast-top-center' 
+            }
+        );
+    </script>
+
     @yield('script')
 </body>
 <!-- END: Body-->
