@@ -62,10 +62,10 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-                {{-- <div class="form-group">
-                    <label class="text-uppercase">kode barang</label>
-                    <input name="kode_barang" type="text" class="form-control" id="kode_barang" readonly>
-                </div> --}}
+                <div class="form-group">
+                    <label class="text-uppercase">nama barang</label>
+                    <input name="nama_barang" type="text" class="form-control" id="nama_barang">
+                </div>
                 <div class="form-group">
                     <label class="text-uppercase">harga beli</label>
                     <input value="{{ $harga_beli ?? old('harga_beli') }}" name="harga_beli" type="number" class="form-control @error('harga_beli') is-invalid @enderror" id="harga_beli">

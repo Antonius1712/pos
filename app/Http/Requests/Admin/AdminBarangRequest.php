@@ -27,6 +27,7 @@ class AdminBarangRequest extends FormRequest
             'kategori_id' => 'required',
             'merk_id' => 'required',
             'supplier_id' => 'required',
+            'nama_barang' => 'required',
             'harga_beli' => 'required',
             'harga_jual' => 'required',
             'stok' => 'required',
