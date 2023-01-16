@@ -14,7 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Aplikasi Point of Sales'),
-
+    'url' => env('APP_URL', 'localhost/pos/public'),
     'nama_toko' => env('NAMA_TOKO', ''),
 
     /*
