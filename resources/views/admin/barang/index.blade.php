@@ -44,14 +44,33 @@
                         <th>Nama</th>
                         <th>Harga</th>
                         <th>Stok</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($barangs as $barang)
-                        <td> {{ $barang->kode_barang }} </td>
-                        <td> {{ $barang->nama_barang }} </td>
-                        <td> {{ $barang->harga_jual }} </td>
-                        <td> {{ $barang->stok }} </td>
+                        <tr>
+                            <td> {{ $barang->kode_barang }} </td>
+                            <td> {{ $barang->nama_barang }} </td>
+                            <td> {{ $barang->harga_jual }} </td>
+                            <td> {{ $barang->stok }} </td>
+                            <td> {{ $barang->created_at }} </td>
+                            <td> {{ $barang->updated_at }} </td>
+                            <td>
+                                <a href="{{ route('admin.barang.edit', $barang->id) }}" class="btn btn-warning btn-icon">
+                                    <i class="feather icon-edit"></i>
+                                </a>
+                                <form action="{{ route('admin.barang.destroy', $barang->id) }}" method="post" style="display: inline;">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-icon">
+                                        <i class="feather icon-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     @empty
                         
                     @endforelse

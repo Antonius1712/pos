@@ -18,8 +18,9 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.barang.store') }}" method="post">
+            <form action="{{ route('admin.barang.update', $barang->id) }}" method="post">
                 @csrf
+                @method('put')
                 <div class="form-group">
                     <label class="text-uppercase">kategori</label>
                     <select name="kategori_id" id="kategori_id" class="form-control @error('kategori_id') is-invalid @enderror">
@@ -62,10 +63,10 @@
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label class="text-uppercase">nama barang</label>
-                    <input name="nama_barang" type="text" class="form-control" id="nama_barang">
-                </div>
+                {{-- <div class="form-group">
+                    <label class="text-uppercase">kode barang</label>
+                    <input name="kode_barang" type="text" class="form-control" id="kode_barang" readonly>
+                </div> --}}
                 <div class="form-group">
                     <label class="text-uppercase">nama barang</label>
                     <input value="{{ $barang->nama_barang ?? old('nama_barang') }}" name="nama_barang" type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang">
@@ -75,14 +76,14 @@
                 </div>
                 <div class="form-group">
                     <label class="text-uppercase">harga beli</label>
-                    <input value="{{ $barang->harga_beli ?? old('harga_beli') }}" name="harga_beli" type="number" class="form-control @error('harga_beli') is-invalid @enderror" id="harga_beli">
+                    <input value="{{ $barang->harga_beli ?? old('harga_beli') }}" name="harga_beli" type="text" class="form-control @error('harga_beli') is-invalid @enderror" id="harga_beli">
                     @error('harga_beli')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label class="text-uppercase">harga jual</label>
-                    <input value="{{ $barang->harga_jual ?? old('harga_jual') }}" name="harga_jual" type="number" class="form-control @error('harga_jual') is-invalid @enderror" id="harga_jual">
+                    <input value="{{ $barang->harga_jual ?? old('harga_jual') }}" name="harga_jual" type="text" class="form-control @error('harga_jual') is-invalid @enderror" id="harga_jual">
                     @error('harga_jual')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
