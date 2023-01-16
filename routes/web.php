@@ -51,6 +51,8 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->as('admin.')->group(
 
 Route::middleware(['auth', 'auth.user'])->as('user.')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/search-data-barang', [TransaksiController::class, 'searchDataBarang'])->name('transaksi.search_data_barang');
+    
     Route::resource('/barang', BarangController::class);
     Route::resource('/transaksi', TransaksiController::class);
     Route::resource('/user', BarangController::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barang;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -14,7 +15,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.transaksi.index');
     }
 
     /**
@@ -81,5 +82,9 @@ class TransaksiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function searchDataBarang(Request $request){
+        return Barang::where('nama_barang', 'LIKE', '%'.$request->nama_barang.'%')->get();
     }
 }

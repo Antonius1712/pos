@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barang;
+use App\Models\Kategori;
+use App\Models\Merk;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -12,9 +16,22 @@ class BarangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $kategori;
+    protected $merk;
+    protected $supplier;
+
+    public function __construct()
+    {
+        $this->kategori = Kategori::all();
+        $this->merk = Merk::all();
+        $this->supplier = Supplier::all();
+    }
+
     public function index()
     {
-        return view('user.barang.index');
+        $barangs = Barang::all();
+        return view('user.barang.index', compact('barangs'));
     }
 
     /**
