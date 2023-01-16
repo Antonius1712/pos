@@ -9,6 +9,7 @@ use App\Models\Kategori;
 use App\Models\Merk;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class AdminBarangController extends Controller
 {
@@ -32,6 +33,7 @@ class AdminBarangController extends Controller
     public function index()
     {
         $barangs = Barang::all();
+
         return view('admin.barang.index', compact('barangs'));
     }
 

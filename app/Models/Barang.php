@@ -6,10 +6,12 @@ use Attribute;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Barang extends Model
 {
     use HasFactory;
+    use LogsActivity;
 
     protected $table = 'barang';
 
@@ -24,6 +26,21 @@ class Barang extends Model
         'stok',
         'satuan',
     ];
+
+    protected static $logAttributes = [
+        'kategori_id',
+        'merk_id',
+        'supplier_id',
+        'kode_barang',
+        'nama_barang',
+        'harga_beli',
+        'harga_jual',
+        'stok',
+        'satuan',
+    ];
+
+    protected static $logOnlyDirty = true;
+
 
     // ? RELATION
     public function kategori(){

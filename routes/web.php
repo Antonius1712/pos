@@ -35,11 +35,10 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth', 'auth.admin'])->prefix('admin')->as('admin.')->group(function(){
     Route::get('/', [AdminHomeController::class, 'index'])->name('home');
-    
+
     Route::resource('/transaksi', AdminTransaksiController::class);
     Route::resource('/user', AdminUserController::class);
     Route::resource('/supplier', AdminSupplierController::class);
-
     Route::resource('/kategori', AdminKategoriController::class);
     Route::resource('/merk', AdminMerkController::class);
     Route::resource('/barang', AdminBarangController::class);
@@ -51,6 +50,7 @@ Route::middleware(['auth', 'auth.admin'])->prefix('admin')->as('admin.')->group(
 
 Route::middleware(['auth', 'auth.user'])->as('user.')->group(function(){
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    
     Route::resource('/barang', BarangController::class);
     Route::resource('/transaksi', TransaksiController::class);
     Route::resource('/user', BarangController::class);
