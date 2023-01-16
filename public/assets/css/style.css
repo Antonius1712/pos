@@ -17,3 +17,7 @@ table>thead>tr>th {
 table>tbody>tr>td {
 	text-align: center;
 }
+
+table>tfoot>tr>td {
+	text-align: center;
+}

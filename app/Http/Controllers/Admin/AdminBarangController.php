@@ -126,11 +126,17 @@ class AdminBarangController extends Controller
     public function GenerateKodeBarang($data){
         $data = Barang::where('id', $data)->with('kategori', 'merk')->first();
         $random = $this->UniqueRandomNumbersWithinRange(0, rand(1, 100), 5); // (min, max, digit)
-        $romanYear = $this->numberToRomanRepresentation(now()->format('Y'));
-        $romanMonth = $this->numberToRomanRepresentation(now()->format('m'));
-        $romanDate = $this->numberToRomanRepresentation(now()->format('d'));
+        // $romanYear = $this->numberToRomanRepresentation(now()->format('Y'));
+        // $romanMonth = $this->numberToRomanRepresentation(now()->format('m'));
+        // $romanDate = $this->numberToRomanRepresentation(now()->format('d'));
 
-        return $data->kategori->kode_kategori.''.$data->merk->kode_merk.'/'.$romanYear.'/'.$romanMonth.'/'.$romanDate.'/'.$random;
+        // return $data->kategori->kode_kategori.''.$data->merk->kode_merk.'/'.$romanYear.'/'.$romanMonth.'/'.$romanDate.'/'.$random;
+
+        $Year = now()->format('Y');
+        $Month = now()->format('m');
+        $Date = now()->format('d');
+
+        return $data->kategori->kode_kategori.''.$data->merk->kode_merk.''.$Year.''.$Month.''.$Date.'/'.$random;
     }
 
     public function UniqueRandomNumbersWithinRange($min, $max, $digit) {

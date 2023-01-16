@@ -64,10 +64,6 @@
                 </div>
                 <div class="form-group">
                     <label class="text-uppercase">nama barang</label>
-                    <input name="nama_barang" type="text" class="form-control" id="nama_barang">
-                </div>
-                <div class="form-group">
-                    <label class="text-uppercase">nama barang</label>
                     <input value="{{ $barang->nama_barang ?? old('nama_barang') }}" name="nama_barang" type="text" class="form-control @error('nama_barang') is-invalid @enderror" id="nama_barang">
                     @error('nama_barang')
                         <small class="text-danger">{{ $message }}</small>
