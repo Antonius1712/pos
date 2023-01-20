@@ -6468,6 +6468,11 @@ a.close.disabled {
   background-color : #7367F0 !important;
 }
 
+.bg-primary-transparent {
+  background-color : #7367F0 !important;
+  opacity: 0.7;
+}
+
 a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-primary:focus {
   background-color : #4839EB !important;
 }
