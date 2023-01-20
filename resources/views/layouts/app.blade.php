@@ -131,6 +131,8 @@
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/scripts/datatables/datatable.js') }}"></script>
 
+    <script src="{{ asset('assets/js/AllFunction.js') }}"></script>
+
     <script>
         let err = '{{ $err ?? "" }}';
         if( err != '' ){
@@ -148,6 +150,10 @@
 
         var baseUrl = '{{ config("app.url") }}';
         var token = $('#token_post').attr('content');
+
+        $(document).ready(function(){
+            $('.select2').select2();
+        });
     </script>
 
     @yield('script')

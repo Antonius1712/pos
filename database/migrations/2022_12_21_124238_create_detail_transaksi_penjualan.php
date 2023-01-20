@@ -18,6 +18,8 @@ class CreateDetailTransaksiPenjualan extends Migration
             $table->integer('transaksi_penjualan_id');
             $table->integer('barang_id');
             $table->integer('jumlah_barang');
+            $table->integer('harga_barang');
+            $table->integer('sub_total');
             $table->timestamps();
         });
     }

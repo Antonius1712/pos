@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\Barang;
 use App\Models\Kategori;
 use App\Models\Merk;
+use App\Models\MetodePembayaran;
+use App\Models\Pelanggan;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\User;
@@ -130,6 +132,56 @@ class MasterData extends Seeder
         $supplier->alamat_supplier = 'kedamaian';
         $supplier->nama_sales = 'riko';
         $supplier->nomor_hp_sales = '081234567890';
+        $supplier->save();
+
+        // !Pelanggan
+        $supplier = new Pelanggan;
+        $supplier->nama_pelanggan = 'Ibu Rosmiyah';
+        $supplier->nomor_hp = '081234567890';
+        $supplier->alamat = 'gudang bulog';
+        $supplier->save();
+
+        $supplier = new Pelanggan;
+        $supplier->nama_pelanggan = 'Bapak Samsudin';
+        $supplier->nomor_hp = '081234567890';
+        $supplier->alamat = 'kedamaian';
+        $supplier->save();
+
+        // !MetodeBayar
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Debit BNI';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Debit BCA';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Debit BRI';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Credit Card BNI';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Credit Card BCA';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Credit Card BRI';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'GO-Pay';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'OVO';
+        $supplier->save();
+
+        $supplier = new MetodePembayaran;
+        $supplier->name = 'Cash';
         $supplier->save();
 
         // !Barang

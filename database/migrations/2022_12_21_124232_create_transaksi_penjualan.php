@@ -20,8 +20,7 @@ class CreateTransaksiPenjualan extends Migration
             $table->integer('diskon');
             $table->integer('total_harga');
             $table->integer('total_bayar');
-            $table->integer('selisih');
-            $table->string('bukti_bayar');
+            $table->string('bukti_bayar')->nullable();
             $table->timestamps();
         });
     }

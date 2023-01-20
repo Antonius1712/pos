@@ -17,12 +17,16 @@ class DetailTransaksiPenjualan extends Model
         'transaksi_pembelian_id',
         'barang_id',
         'jumlah_barang',
+        'harga_barang',
+        'sub_total',
     ];
 
     protected static $logAttributes = [
         'transaksi_pembelian_id',
         'barang_id',
         'jumlah_barang',
+        'harga_barang',
+        'sub_total',
     ];
 
     protected static $logOnlyDirty = true;

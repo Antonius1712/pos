@@ -23,7 +23,7 @@ class TransaksiPenjualan extends Model
         'bukti_bayar',
     ];
 
-    protected static $logAttributes =[
+    protected static $logAttributes = [
         'metode_pembayaran_id',
         'pelanggan_id',
         'diskon',
