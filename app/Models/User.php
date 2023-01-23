@@ -51,6 +51,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getRoleNameAttribute(){
+        return Role::findOrFail($this->attributes['roles_id'])->name;
+    }
+
+    public function getBadgeTypeAttribute(){
+        if( $this->attributes['roles_id'] == 1 ){
+            return 'danger';
+        } else {
+            return 'success';
+        }
+    }
+
     public function role(){
         return $this->hasOne(Role::class, 'id', 'roles_id');
     }

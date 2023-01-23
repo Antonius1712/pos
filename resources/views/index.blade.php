@@ -15,7 +15,7 @@
                 </div>
             </div>
         </a>
-        <a href="">
+        <a href="{{ route('user.transaksi.index') }}">
             <div class="card bg-primary">
                 <div class="card-body text-white text-center" style="font-size: 48px; margin-top: 25%; margin-bottom: 25%;">
                     <i class="feather icon-shopping-cart"></i>
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </a>
-        <a href="">
+        <a href="{{ route('user.user.index') }}">
             <div class="card bg-primary">
                 <div class="card-body text-white text-center" style="font-size: 48px; margin-top: 25%; margin-bottom: 25%;">
                     <i class="feather icon-users"></i>

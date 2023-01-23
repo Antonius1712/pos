@@ -33,7 +33,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered zero-configuration dataTable">
                     <thead>
-                        <tr>
+                        <tr class="bg-primary text-white">
                             <th>Kode</th>
                             <th>Nama</th>
                             <th>Harga</th>
@@ -63,7 +63,7 @@
     <script>
         $('.zero-configuration').dataTable({
             "bLengthChange": false,
-            "lengthMenu": [4],
+            "lengthMenu": [10],
             "columnDefs": [{
                 "className": "dt-center",
                 "targets": "_all"

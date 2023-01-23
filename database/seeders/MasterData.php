@@ -8,6 +8,7 @@ use App\Models\Merk;
 use App\Models\MetodePembayaran;
 use App\Models\Pelanggan;
 use App\Models\Role;
+use App\Models\Status;
 use App\Models\Supplier;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -71,6 +72,19 @@ class MasterData extends Seeder
         $user->password = Hash::make('login123');
         $user->email = 'user2@cabar.com';
         $user->save();
+
+        // !Status
+        $status = new Status;
+        $status->name = 'Belum Bayar';
+        $status->save();
+
+        $status = new Status;
+        $status->name = 'Sudah Bayar';
+        $status->save();
+
+        $status = new Status;
+        $status->name = 'Batal';
+        $status->save();
 
         // !Kategori
         $kategori = new Kategori;

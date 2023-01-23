@@ -27,7 +27,7 @@
                 <div class="card-header bg-primary text-white">
                     <p>Detail Transaksi</p>
                 </div>
-                <form action="{{ route('user.transaksi.store') }}" method="post">
+                <form action="{{ route('admin.transaksi.store') }}" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group form-check-inline">
@@ -148,7 +148,7 @@
     <script>
         $('body').on('keyup', '#nama_barang', function(){
             let nama_barang = this.value;
-            let url = '{{ Route("user.transaksi.search_data_barang") }}';
+            let url = '{{ Route("admin.transaksi.search_data_barang") }}';
             $.ajax({
                 url: url,
                 type: 'post',

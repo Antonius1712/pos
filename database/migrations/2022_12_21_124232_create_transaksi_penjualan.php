@@ -21,6 +21,7 @@ class CreateTransaksiPenjualan extends Migration
             $table->integer('total_harga');
             $table->integer('total_bayar');
             $table->string('bukti_bayar')->nullable();
+            $table->integer('status_bayar')->default('1');
             $table->timestamps();
         });
     }

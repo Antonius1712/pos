@@ -130,6 +130,7 @@
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/scripts/datatables/datatable.js') }}"></script>
+    <script src="{{ asset('backend/js/swal/sweetalert2.all.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/AllFunction.js') }}"></script>
 
@@ -154,6 +155,9 @@
         $(document).ready(function(){
             $('.select2').select2();
         });
+
+        var token = '{{ config("app.token_api") }}';
+
     </script>
 
     @yield('script')

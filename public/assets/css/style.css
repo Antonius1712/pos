@@ -12,12 +12,28 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
 
 table>thead>tr>th {
 	text-align: center;
+	border: 1px solid #ccc !important;
 }
 
 table>tbody>tr>td {
 	text-align: center;
+	border: 1px solid #ccc !important;
 }
 
 table>tfoot>tr>td {
 	text-align: center;
+}
+
+.modal-backdrop {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 80vh;
+    overflow-y: auto;
 }

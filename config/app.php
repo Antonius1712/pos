@@ -15,7 +15,9 @@ return [
 
     'name' => env('APP_NAME', 'Aplikasi Point of Sales'),
     'url' => env('APP_URL', 'localhost/pos/public'),
+    'url_api' => env('APP_URL_API', 'localhost/pos/public/api'),
     'nama_toko' => env('NAMA_TOKO', ''),
+    'token_api' => env('TOKEN_API', ''),
 
     /*
     |--------------------------------------------------------------------------

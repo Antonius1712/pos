@@ -47,7 +47,6 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all(), isset($request->new_customer), isset($request->customer_id));
         $customer_id = '';
         if( isset($request->new_customer) ){
             $new_customer = new Pelanggan;
@@ -61,7 +60,7 @@ class TransaksiController extends Controller
             $customer_id = $request->customer_id;
         }
 
-        $diskon = str_replace(',', '', $request->discount);
+        $diskon = isset($request->discount) ? str_replace(',', '', $request->discount) : 0;
         $grand_total = str_replace(',', '', $request->grand_total);
         $total_harga = $grand_total + $diskon;
         $total_bayar = $grand_total;
@@ -134,5 +133,10 @@ class TransaksiController extends Controller
 
     public function searchDataBarang(Request $request){
         return Barang::where('nama_barang', 'LIKE', '%'.$request->nama_barang.'%')->get();
+    }
+
+    public function updateStatus($id, $status){
+        TransaksiPenjualan::findOrFail($id)->update(['status_bayar' => $status]);
+        return redirect()->route('admin.transaksi.index');
     }
 }
